@@ -1,9 +1,10 @@
 package nour.mohsen.jdbctemplate;
 
 import javax.sql.DataSource;
+import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.jdbc.datasource.SingleConnectionDataSource;
+import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
@@ -12,14 +13,28 @@ import org.springframework.jdbc.datasource.SingleConnectionDataSource;
 @Configuration
 public class Ch4Configuration {
 
-    @Bean
+   @Bean(destroyMethod = "close")
     public DataSource dataSource() {
-        SingleConnectionDataSource dataSource = new SingleConnectionDataSource();
-        dataSource.setSuppressClose(true);
+        BasicDataSource dataSource = new BasicDataSource();
         dataSource.setDriverClassName("org.h2.Driver");
         dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
         dataSource.setUsername("sa");
         dataSource.setPassword("");
         return dataSource;
     }
+
+    @Bean
+    public JdbcTemplate jdbcTemplate() {
+        JdbcTemplate jdbcTemplate = new JdbcTemplate();
+        jdbcTemplate.setDataSource(dataSource());
+        return jdbcTemplate;
+    }
+
+    @Bean
+    public AccountDao accountDao() {
+        AccountDaoJdbcImpl accountDao = new AccountDaoJdbcImpl();
+        accountDao.setJdbcTemplate(jdbcTemplate());
+        return accountDao;
+    }
+
 }
