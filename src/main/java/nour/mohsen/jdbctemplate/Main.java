@@ -10,8 +10,7 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 public class Main {
 
     public static void main(String[] args) throws SQLException {
-        AnnotationConfigApplicationContext applicationContext
-                = new AnnotationConfigApplicationContext(Ch4Configuration.class);
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Ch4Configuration.class);
         AccountDao accountDao = applicationContext.getBean(AccountDao.class);
         Account account = accountDao.find("john doe");
         System.out.println(account.getId());

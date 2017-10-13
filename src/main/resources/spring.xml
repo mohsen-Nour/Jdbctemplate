@@ -10,8 +10,4 @@ http://www.springframework.org/schema/jdbc/spring-jdbc-4.0.xsd">
 <jdbc:script location="classpath:schema.sql"/>
 <jdbc:script location="classpath:data.sql"/>
 </jdbc:embedded-database>
-<jdbc:initialize-database data-source="dataSource">
-<jdbc:script location="classpath:schema.sql"/>
-<jdbc:script location="classpath:data.sql"/>
-</jdbc:initialize-database>
 </beans>

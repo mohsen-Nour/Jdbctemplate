@@ -47,10 +47,11 @@ public class AccountDaoJdbcImpl implements AccountDao {
     public Account find(long accountId) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
-    public Account find(String ownerName){
-        return namedParameterJdbcTemplate.queryForObject("select id,owner_name,balance,access_time,locked from account where owner_name =:ownerName", Collections.singletonMap("ownerName", ownerName),
+    public Account find(String ownerName) {
+        return namedParameterJdbcTemplate.queryForObject("select id,owner_name,balance,access_time,locked from account where owner_name =:ownerName"
+                ,Collections.singletonMap("ownerName", ownerName),
                 new RowMapper<Account>() {
             @Override
             public Account mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -75,7 +76,7 @@ public class AccountDaoJdbcImpl implements AccountDao {
 //    public List<Account> find(String ownerName) {
 //
 //    }
-
+    
     @Override
     public List<Account> find(boolean locked) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
