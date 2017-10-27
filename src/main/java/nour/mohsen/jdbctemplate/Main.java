@@ -1,6 +1,9 @@
 package nour.mohsen.jdbctemplate;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 /**
@@ -12,7 +15,10 @@ public class Main {
     public static void main(String[] args) throws SQLException {
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Ch4Configuration.class);
         AccountDao accountDao = applicationContext.getBean(AccountDao.class);
-        Account account = accountDao.find("john doe");
+        List<Long> list = new ArrayList<>();
+        list.add(1l);
+
+        Account account = accountDao.find(list).get(0);
         System.out.println(account.getId());
         System.out.println(account.getOwnerName());
         System.out.println(account.getBalance());
