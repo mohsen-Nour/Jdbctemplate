@@ -1,1 +1,1 @@
-insert into account (owner_name,balance,access_time,locked) values ('john doe',10.0,'2014-01-01',false);
+insert into bank.account (id,owner_name,balance,access_time,locked) values (1,'john doe',10.0,'2014-01-01',false);
