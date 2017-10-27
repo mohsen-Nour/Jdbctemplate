@@ -16,10 +16,10 @@ public class Ch4Configuration {
    @Bean(destroyMethod = "close")
     public DataSource dataSource() {
         BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("org.h2.Driver");
-        dataSource.setUrl("jdbc:h2:tcp://localhost/~/test");
-        dataSource.setUsername("sa");
-        dataSource.setPassword("");
+        dataSource.setDriverClassName("org.postgresql.Driver");
+        dataSource.setUrl("jdbc:postgresql://127.0.0.1:5432/bank");
+        dataSource.setUsername("postgres");
+        dataSource.setPassword("postgres");
         return dataSource;
     }
 
